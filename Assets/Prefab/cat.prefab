@@ -149,3 +149,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 795db904b95ba3849b6769c65925b19c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  delay: 1
+  radius: 12
+  force: 1500
+  explodeOnCollision: 1
