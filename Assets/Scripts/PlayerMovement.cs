@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -41,6 +42,9 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 moveDirection;
     private Rigidbody rb;
 
+    public GameObject gun;
+    private Animator animator;
+
     private enum MovementState
     {
         walking, sprinting, air, crouching
@@ -54,6 +58,7 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true; // Evitar que la gravedad afecte la rotación
         readyToJump = true; // Asegúrate de que esté lista para saltar
+        animator = gun.GetComponent<Animator>();
 
         startYScale = transform.localScale.y;
 
@@ -62,6 +67,14 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {
         movePlayer();
+        if (Math.Abs(rb.velocity.x) > 0 && Math.Abs(rb.velocity.z) > 0)
+        {
+            Debug.Log("MOVING");
+            animator.SetBool("Moving", true);
+        } else
+        {
+            animator.SetBool("Moving", false);
+        }
     }
 
     void Update()
@@ -86,6 +99,7 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKeyDown(jumpKey) && readyToJump && grounded) // Cambien a GetKeyDown
         {
             readyToJump = false;
+            animator.SetTrigger("Jump");
             Jump();
             Invoke(nameof(resetJump), jumpCoolDown);
         }
