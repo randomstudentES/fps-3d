@@ -11,7 +11,7 @@ public class SelfDestructExplosion : MonoBehaviour
 
     [Header("Onda expansiva")]
     public float explosionRadius = 10f;
-    public float explosionForce = 200f;
+    public float explosionForce = 70000f;
     public float upwardModifier = 1f;
 
     [Header("Efectos opcionales")]
@@ -36,9 +36,13 @@ public class SelfDestructExplosion : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (!hasExploded)
+        if (!hasExploded && explota)
         {
             Explode();
+        }
+        else if (!hasExploded)
+        {
+            Destroy(gameObject);
         }
     }
 

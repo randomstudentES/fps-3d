@@ -69,7 +69,6 @@ public class PlayerMovement : MonoBehaviour
         movePlayer();
         if (Math.Abs(rb.velocity.x) > 0 && Math.Abs(rb.velocity.z) > 0)
         {
-            Debug.Log("MOVING");
             animator.SetBool("Moving", true);
         } else
         {
