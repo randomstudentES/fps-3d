@@ -42,7 +42,9 @@ public class SelfDestructExplosion : MonoBehaviour
         }
         else if (!hasExploded)
         {
+
             Destroy(gameObject);
+
         }
     }
 
@@ -64,8 +66,14 @@ public class SelfDestructExplosion : MonoBehaviour
             Rigidbody rb = nearby.GetComponent<Rigidbody>();
             if (rb != null)
             {
-                // Aplica fuerza explosiva
-                rb.AddExplosionForce(explosionForce, transform.position, explosionRadius, upwardModifier, ForceMode.Impulse);
+                if (nearby.gameObject.CompareTag("1LifeHamster"))
+                {
+                    Destroy(nearby.gameObject);
+                }
+                else
+                {
+                    rb.AddExplosionForce(explosionForce, transform.position, explosionRadius, upwardModifier, ForceMode.Impulse);
+                }
             }
         }
 
