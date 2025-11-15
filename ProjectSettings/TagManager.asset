@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Suelo
+  - Bala
+  - 1LifeHamster
+  - DogWithGun
   layers:
   - Default
   - TransparentFX

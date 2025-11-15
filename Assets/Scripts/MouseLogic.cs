@@ -7,6 +7,7 @@ public class MouseLogic : MonoBehaviour
     public Transform player;
     public float speed = 300f;
     public int vidas;
+    public bool puedePerseguir = false;
 
     private Rigidbody rb;
 
@@ -17,7 +18,7 @@ public class MouseLogic : MonoBehaviour
 
     void Update()
     {
-        if (player != null)
+        if (player != null && puedePerseguir)
         {
             Vector3 direction = (player.position - transform.position).normalized;
 
@@ -28,27 +29,6 @@ public class MouseLogic : MonoBehaviour
             // Hacer que el enemigo mire hacia el jugador
             Quaternion lookRotation = Quaternion.LookRotation(-direction);
             transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * speed);
-        }
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            Debug.Log("DAÑO");
-        } else if (collision.gameObject.CompareTag("Bala"))
-        {
-            restarVida(1);
-        }
-    }
-
-    private void restarVida(int danyo)
-    {
-        vidas -= danyo;
-
-        if (vidas < 0)
-        {
-            Destroy(gameObject);
         }
     }
 

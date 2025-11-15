@@ -31,6 +31,9 @@ public class SelfDestructExplosion : MonoBehaviour
         if (explota)
         {
             Explode();
+        } else
+        {
+            Destroy(gameObject);
         }
     }
 
